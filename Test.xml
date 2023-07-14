@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite parallel="false"  name="nopcommerce Regression suite">
+    <parameter name="browser" value="edge"></parameter>
+    <test name="Regression Test">
+
+        <classes>
+
+            <class name="Tests.RegisterTests.RegisterTest"/>
+
+        </classes>
+
+
+    </test>
+
+
+
+</suite>
