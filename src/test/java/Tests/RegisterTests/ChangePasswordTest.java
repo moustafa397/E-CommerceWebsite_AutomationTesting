@@ -10,9 +10,9 @@ import org.testng.annotations.Test;
 
 public class ChangePasswordTest extends TestBase {
 
-    HomePage homeObject ;
-    UserRegistrationPage registerObject ;
-    LoginPage loginObject ;
+    HomePage homePage;
+    UserRegistrationPage registerPage;
+    LoginPage loginPage;
     MyAccountPage myAccountObject ;
     String oldPassword = "12345678" ;
     String newPassword = "123456" ;
@@ -24,20 +24,20 @@ public class ChangePasswordTest extends TestBase {
     @Test(priority=1)
     public void UserRegisterSuccessfully()
     {
-        homeObject = new HomePage(driver);
-        homeObject.openRegisterPage();
-        registerObject = new UserRegistrationPage(driver);
-        registerObject.userRegistration(firstName, lastName, email, oldPassword);
-        Assert.assertTrue(registerObject.getSuccessMessage().contains("Your registration completed"));
+        homePage = new HomePage(driver);
+        homePage.openRegisterPage();
+        registerPage = new UserRegistrationPage(driver);
+        registerPage.userRegistration(firstName, lastName, email, oldPassword);
+        Assert.assertTrue(registerPage.getSuccessMessage().contains("Your registration completed"));
     }
 
 
     @Test(priority=2)
     public void RegisteredUserLogin()
     {
-        homeObject.openLoginPage();
-        loginObject = new LoginPage(driver);
-        loginObject.userLogin(email, oldPassword);
+        homePage.openLoginPage();
+        loginPage = new LoginPage(driver);
+        loginPage.userLogin(email, oldPassword);
         //Assert.assertTrue(registerObject.logoutLink.getText().contains("Log out"));
     }
 
@@ -45,7 +45,7 @@ public class ChangePasswordTest extends TestBase {
     public void RegisteredUserChangePassword()
     {
         myAccountObject = new MyAccountPage(driver) ;
-        registerObject.openMyAccountPage();
+        registerPage.openMyAccountPage();
         myAccountObject.openChangePasswordPage();
         myAccountObject.changePassword(oldPassword, newPassword);
         Assert.assertTrue(myAccountObject.getChangePasswordResult().contains("Password was changed"));
@@ -54,7 +54,7 @@ public class ChangePasswordTest extends TestBase {
     @Test(priority=4)
     public void SignOutFromAccount()
     {
-        registerObject.logout();
+        registerPage.logout();
     }
 
 
@@ -62,9 +62,9 @@ public class ChangePasswordTest extends TestBase {
     @Test(priority=5)
     public void loginWithNewPassword()
     {
-        homeObject.openLoginPage();
-        loginObject = new LoginPage(driver);
-        loginObject.userLogin(email, newPassword);
+        homePage.openLoginPage();
+        loginPage = new LoginPage(driver);
+        loginPage.userLogin(email, newPassword);
         //Assert.assertTrue(registerObject.logoutLink.getText().contains("Log out"));
     }
 
@@ -72,7 +72,7 @@ public class ChangePasswordTest extends TestBase {
     @Test(priority=6)
     public void UserLogout()
     {
-        registerObject.logout();
+        registerPage.logout();
     }
 
 }

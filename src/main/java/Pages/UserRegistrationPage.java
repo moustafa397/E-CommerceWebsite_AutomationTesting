@@ -41,6 +41,10 @@ public class UserRegistrationPage extends PageBase {
        return driver.findElement(successMessage).getText();
     }
 
+    public String getLogoutLink(){
+        return  getElementText(logoutLink);
+    }
+
     public void logout()
     {
         clickButton(logoutLink);

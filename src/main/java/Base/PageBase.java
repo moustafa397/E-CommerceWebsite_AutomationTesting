@@ -4,6 +4,7 @@ package Base;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -36,6 +37,12 @@ public class PageBase {
     protected void waitTillTextAppear (By element, String text , int waitTime){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitTime));
         wait.until(ExpectedConditions.textToBePresentInElementLocated(element,text));
+
+    }
+
+    public void selectFromDropDown (By dropList ,String option){
+
+        new Select (driver.findElement(dropList)).selectByVisibleText(option);
 
     }
 

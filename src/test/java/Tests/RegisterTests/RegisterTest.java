@@ -6,38 +6,42 @@ import Pages.LoginPage;
 import Pages.UserRegistrationPage;
 import Tests.TestBase.TestBase;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 
 public class RegisterTest extends TestBase {
 
-    HomePage homeObject;
-    UserRegistrationPage registerObject;
-    LoginPage loginObject;
+    HomePage homePage;
+    UserRegistrationPage registerPage;
+    LoginPage loginPage;
 
 
-    @Test(priority = 1,alwaysRun = true)
+    @Test
     public void UserRegisterSuccessfully(){
 
-        homeObject = new HomePage(driver);
-        registerObject = new UserRegistrationPage(driver);
+        homePage = new HomePage(driver);
+        registerPage = new UserRegistrationPage(driver);
 
-        homeObject.openRegisterPage();
-        registerObject.userRegistration("Mostafa","Ibrahem","sasa1234556@sas.com","12345678");
-        Assert.assertTrue(registerObject.getSuccessMessage().contains("Your registration completed"));
+
+        homePage.openRegisterPage();
+        registerPage.userRegistration("Mostafa","Ibrahem","sasas12lfl34556@sas.com","12345678");
+        Assert.assertTrue(registerPage.getSuccessMessage().contains("Your registration completed"));
 
     }
 
 
-    @Test (priority = 2)
-    public void UserLoginSuccessfully(){
+    @AfterClass
+    public void RegisteredUserLogin(){
+
+        homePage = new HomePage(driver);
+        loginPage = new LoginPage(driver);
+        registerPage = new UserRegistrationPage(driver);
 
 
-        loginObject = new LoginPage(driver);
-
-        homeObject.openLoginPage();
-        loginObject.userLogin("sasa123456@sas.com","12345678");
-       // Assert.assertTrue(registerObject.getLogoutLink().contains("Log out"));
+        homePage.openLoginPage();
+        loginPage.userLogin("sasa12lfl34556@sas.com","12345678");
+        Assert.assertTrue(registerPage.getLogoutLink().contains("Log out"));
     }
 
 

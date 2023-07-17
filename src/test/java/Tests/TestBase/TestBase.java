@@ -4,11 +4,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-
+import org.testng.annotations.*;
+import org.testng.ITestResult;
+import Utilities.Helper;
 
 public class TestBase {
 
@@ -43,9 +41,21 @@ public class TestBase {
         driver.get("https://demo.nopcommerce.com/");
     }
 
+
+    @AfterMethod
+    public void screenshotOnFailure(ITestResult result)
+    {
+        if (result.getStatus() == ITestResult.FAILURE)
+        {
+            System.out.println("Test Failed!");
+            System.out.println("Taking Screenshot..");
+            Helper.takeScreenShot(driver, result.getName());
+        }
+    }
+
     @AfterClass
     public void stopDriver(){
-        //driver.quit();
+        driver.quit();
 
     }
 
