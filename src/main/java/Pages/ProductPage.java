@@ -12,6 +12,9 @@ public class ProductPage extends PageBase {
     private final By productName = By.cssSelector(".product-name > h1");
     private final By productPrice = By.cssSelector(".product-price > span");
     private final By currencyDropdown = By.id("customerCurrency");
+    private final By addReviewBtn = By.linkText("Add your review");
+
+
 
     public String getProductName (){
        return getElementText(productName);
@@ -23,6 +26,10 @@ public class ProductPage extends PageBase {
 
     public void changeCurrency (String option){
         selectFromDropDown(currencyDropdown,option);
+    }
+
+    public void openAddReviewPage () {
+        clickButton(addReviewBtn);
     }
 
 

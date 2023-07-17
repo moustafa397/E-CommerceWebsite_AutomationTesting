@@ -1,6 +1,5 @@
-package Tests.ChangeCurrencyTest;
+package Tests.ProductsTests;
 
-import Pages.HomePage;
 import Pages.ProductPage;
 import Pages.SearchPage;
 import Tests.TestBase.TestBase;
@@ -10,7 +9,6 @@ import org.testng.annotations.Test;
 
 public class ChangeCurrencyTest extends TestBase {
 
-    HomePage homePage;
     SearchPage searchPage;
     ProductPage productPage;
 
@@ -25,11 +23,8 @@ public class ChangeCurrencyTest extends TestBase {
 
     @Test
     public void verifyChangeCurrency(){
-        productPage = new ProductPage(driver);
-
         productPage.changeCurrency("Euro");
-        Assert.assertTrue(productPage.getProductPrice().contains(""));
-
+        Assert.assertTrue(productPage.getProductPrice().contains("€"));
     }
 
 }

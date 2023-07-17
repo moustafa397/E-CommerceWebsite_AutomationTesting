@@ -12,7 +12,7 @@ public class UserRegistrationPage extends PageBase {
 
 
 
-    private final By genderRdoButton = By.id("gender-male");
+    private final By genderRadioButton = By.id("gender-male");
     private final By fnTxtBox = By.id("FirstName");
     private final By lnTxtBox = By.id("LastName");
     private final By emailTxtBox = By.id("Email");
@@ -26,7 +26,7 @@ public class UserRegistrationPage extends PageBase {
 
     public void userRegistration(String firstName, String lastName ,String email, String password){
 
-        clickButton(genderRdoButton);
+        clickButton(genderRadioButton);
         setTxtBoxText(fnTxtBox,firstName);
         setTxtBoxText(lnTxtBox,lastName);
         setTxtBoxText(emailTxtBox,email);

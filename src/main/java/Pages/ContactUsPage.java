@@ -2,9 +2,7 @@ package Pages;
 
 import Base.PageBase;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class ContactUsPage extends PageBase {
     public ContactUsPage(WebDriver driver) {
