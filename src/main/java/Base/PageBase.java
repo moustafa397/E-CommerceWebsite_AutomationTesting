@@ -40,6 +40,12 @@ public class PageBase {
 
     }
 
+    protected void waitTillElementAppear (By element, int waitTime){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(waitTime));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(element));
+
+    }
+
     public void selectFromDropDown (By dropList ,String option){
 
         new Select (driver.findElement(dropList)).selectByVisibleText(option);

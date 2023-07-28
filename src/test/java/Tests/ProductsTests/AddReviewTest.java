@@ -22,7 +22,7 @@ public class AddReviewTest extends TestBase {
 
 
         homePage.openRegisterPage();
-        registerPage.userRegistration("Mostafa","Ibrahem","momo@mooos.com","12345678");
+        registerPage.userRegistration("Mostafa","Ibrahem","momdddxsdo@mooos.com","12345678");
         Assert.assertTrue(registerPage.getSuccessMessage().contains("Your registration completed"));
 
     }
@@ -35,7 +35,7 @@ public class AddReviewTest extends TestBase {
 
 
         homePage.openLoginPage();
-        loginPage.userLogin("momo@mooos.com","12345678");
+        loginPage.userLogin("momdddxsdo@mooos.com","12345678");
         Assert.assertTrue(registerPage.getLogoutLink().contains("Log out"));
     }
 

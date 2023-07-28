@@ -23,7 +23,7 @@ public class LoginTest extends TestBase {
 
 
         homePage.openRegisterPage();
-        registerPage.userRegistration("Mostafa","Ibrahem","sassass12lfl34556@sas.com","12345678");
+        registerPage.userRegistration("Mostafa","Ibrahem","sassass1d2lkddfl3455ff6@sas.com","12345678");
         Assert.assertTrue(registerPage.getSuccessMessage().contains("Your registration completed"));
 
     }
@@ -34,7 +34,7 @@ public class LoginTest extends TestBase {
         loginPage = new LoginPage(driver);
 
         homePage.openLoginPage();
-        loginPage.userLogin("sassass12lfl34556@sas.com","12345678");
+        loginPage.userLogin("sassass1d2lkddfl3455ff6@sas.com","12345678");
         Assert.assertTrue(registerPage.getLogoutLink().contains("Log out"));
     }
 }

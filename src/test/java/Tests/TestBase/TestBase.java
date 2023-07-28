@@ -55,7 +55,7 @@ public class TestBase {
 
     @AfterClass
     public void stopDriver(){
-        //driver.quit();
+        driver.quit();
 
     }
 

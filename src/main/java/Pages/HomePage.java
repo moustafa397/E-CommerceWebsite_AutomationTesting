@@ -24,7 +24,7 @@ public class HomePage extends PageBase {
     }
 
     public void openLoginPage(){
-
+        waitTillTextAppear(loginLink,"Log in",10);
         clickButton(loginLink);
     }
 

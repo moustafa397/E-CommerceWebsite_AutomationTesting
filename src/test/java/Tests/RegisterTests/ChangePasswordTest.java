@@ -18,7 +18,7 @@ public class ChangePasswordTest extends TestBase {
     String newPassword = "123456" ;
     String firstName = "Mostafa" ;
     String lastName = "Ibrahem" ;
-    String email = "test23ss9566f59@gmail.com" ;
+    String email = "sososossg6f6fdd7956@gmail.com" ;
 
 
     @Test(priority=1)
