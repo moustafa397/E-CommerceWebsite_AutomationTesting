@@ -27,15 +27,10 @@ public class CheckoutPage extends PageBase {
         setTxtBoxText(addressTxtBox,address);
         setTxtBoxText(zipCodeTxtBox,zipCode);
         setTxtBoxText(phoneNumberTxtBox,phoneNumber);
-        waitTillElementAppear(billingAddressContinueBtn,10);
         clickButton(billingAddressContinueBtn);
-        waitTillElementAppear(shippingMethodContinueBtn,10);
         clickButton(shippingMethodContinueBtn);
-        waitTillElementAppear(paymentMethodContinueBtn,10);
         clickButton(paymentMethodContinueBtn);
-        waitTillElementAppear(paymentInformationContinueBtn,10);
         clickButton(paymentInformationContinueBtn);
-        waitTillElementAppear(confirmInformationContinueBtn,10);
         clickButton(confirmInformationContinueBtn);
     }
 

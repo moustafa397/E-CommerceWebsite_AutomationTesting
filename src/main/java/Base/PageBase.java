@@ -19,9 +19,9 @@ public class PageBase {
         this.driver = driver;
     }
     protected void clickButton (By button){
-
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(button));
         driver.findElement(button).click();
-
     }
 
     protected void setTxtBoxText(By textElement,String value){

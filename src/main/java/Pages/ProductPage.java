@@ -48,7 +48,6 @@ public class ProductPage extends PageBase {
     }
 
     public String getSuccessMessage() {
-        waitTillElementAppear(successMessage,10);
         clickButton(successMessageCloseBtn);
         return getElementText(successMessage);
     }
