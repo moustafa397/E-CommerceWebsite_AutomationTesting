@@ -1,41 +1,52 @@
 package Tests.ProductsTests;
 
+import Pages.HomePage;
 import Pages.ProductPage;
-import Pages.SearchPage;
 import Pages.ShoppingCartPage;
-import Pages.WishlistPage;
 import Tests.TestBase.TestBase;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+import utilties.JsonDataReader;
 
 public class AddProductToCartTest extends TestBase {
 
-    SearchPage searchPage;
+    HomePage homePage;
     ProductPage productPage;
     ShoppingCartPage cartPage;
+    JsonDataReader jsonReader;
+
 
     @BeforeClass
-    public void SearchProductByAutoSuggest (){
-        searchPage = new SearchPage(driver);
+    public void getReady (){
+        homePage = new HomePage(driver);
         productPage = new ProductPage(driver);
         cartPage = new ShoppingCartPage(driver);
 
-        searchPage.searchSuggestedProduct("HTC");
+        jsonReader = new JsonDataReader();
+        jsonReader.readJsonFile();
     }
 
-    @Test
-    public void AddProductToWishlist(){
+    @Test(priority = 1)
+    public void SearchProductByAutoSuggest (){
+        homePage.searchSuggestedProduct(jsonReader.searchText);
+        Assert.assertTrue(productPage.getProductName().contains(jsonReader.searchText));
+    }
+
+    @Test(priority = 2)
+    public void AddProductToCart(){
 
         SoftAssert softAssert = new SoftAssert();
 
         productPage.addProductToCart();
-        softAssert.assertTrue(productPage.getSuccessMessage().contains("The product has been added to your shopping cart"));
+        softAssert.assertTrue(productPage.getSuccessMessage().contains(jsonReader.cartSuccessMessage));
         productPage.goToShoppingCart();
-        softAssert.assertTrue(cartPage.getProductName().contains("HTC One M8 Android L 5.0 Lollipop"));
+        softAssert.assertTrue(cartPage.getProductName().contains(jsonReader.productName));
 
         softAssert.assertAll();
 
     }
 
 }
+

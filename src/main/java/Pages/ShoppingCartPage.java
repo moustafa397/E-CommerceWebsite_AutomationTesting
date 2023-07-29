@@ -10,9 +10,17 @@ public class ShoppingCartPage extends PageBase {
     }
 
     private final By productName = By.cssSelector(".product > a");
+    private final By termsCheckBox = By.id("termsofservice");
+    private final By checkoutBtn = By.id("checkout");
+
 
 
     public String getProductName (){
         return getElementText(productName);
     }
+    public void proceedToCheckout () {
+        clickButton(termsCheckBox);
+        clickButton(checkoutBtn);
+    }
+
 }

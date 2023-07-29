@@ -7,46 +7,55 @@ import Pages.UserRegistrationPage;
 import Tests.TestBase.TestBase;
 import com.github.javafaker.Faker;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import utilties.JsonDataReader;
 
 
 public class RegisterTest extends TestBase {
 
+    /*
+    1-open browser.
+    2-navigate to home page.
+    3-open register page.
+    4-enter valid data and click on register.
+    5-verify that the register completed successfully.
+    6-login with the registered user.
+    */
+
     HomePage homePage;
     UserRegistrationPage registerPage;
     LoginPage loginPage;
-    Faker fakeData = new Faker();
-    String firstName = fakeData.name().firstName();
-    String lastName = fakeData.name().lastName();
-    String email = fakeData.internet().emailAddress();
-    String password = fakeData.number().digits(8).toString();
+    String email;
+    JsonDataReader jsonReader;
 
+    @BeforeClass
+    public void getReady() {
+        //generate an email for register.
+        Faker fakeData = new Faker();
+        email = fakeData.internet().emailAddress();
 
-
-    @Test
-    public void UserRegisterSuccessfully(){
+        jsonReader = new JsonDataReader();
+        jsonReader.readJsonFile();
 
         homePage = new HomePage(driver);
         registerPage = new UserRegistrationPage(driver);
+        loginPage = new LoginPage(driver);
+    }
 
+    @Test(priority = 1)
+    public void UserRegisterSuccessfully() {
 
         homePage.openRegisterPage();
-        registerPage.userRegistration(firstName,lastName,email,password);
-        Assert.assertTrue(registerPage.getSuccessMessage().contains("Your registration completed"));
-
+        registerPage.userRegistration(jsonReader.firstName, jsonReader.lastName, email, jsonReader.password);
+        Assert.assertTrue(registerPage.getSuccessMessage().contains(jsonReader.successRegisterMessage));
     }
 
-
-    @AfterClass
-    public void RegisteredUserLogin(){
-        loginPage = new LoginPage(driver);
-
+    @Test(priority = 2)
+    public void userLogin() {
         homePage.openLoginPage();
-        loginPage.userLogin(email,password);
-        Assert.assertTrue(registerPage.getLogoutLink().contains("Log out"));
+        loginPage.userLogin(email, jsonReader.password);
+        Assert.assertTrue(registerPage.getLogoutLink().contains(jsonReader.logoutLinkText));
     }
-
-
 
 }

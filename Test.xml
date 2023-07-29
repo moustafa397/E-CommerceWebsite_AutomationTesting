@@ -1,11 +1,22 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite parallel="false"  name="nopcommerce Regression suite">
-    <parameter name="browser" value="edge"></parameter>
+    <parameter name="browser" value="chrome"></parameter>
     <test name="Regression Test">
 
         <classes>
 
             <class name="Tests.RegisterTests.RegisterTest"/>
+            <class name="Tests.RegisterTests.LoginTest"/>
+            <class name="Tests.RegisterTests.ChangePasswordTest"/>
+            <class name="Tests.SearchTests.SearchTest"/>
+            <class name="Tests.SearchTests.SearchByAutoSuggestTest"/>
+            <class name="Tests.ProductsTests.ChangeCurrencyTest"/>
+            <class name="Tests.ProductsTests.AddToWishlistTest"/>
+            <class name="Tests.ProductsTests.AddReviewTest"/>
+            <class name="Tests.ProductsTests.AddProductToCartTest"/>
+            <class name="Tests.ProductsTests.RegisteredUserCheckoutTest"/>
+            <class name="Tests.ContactUsTests.ContactUsTest"/>
+
 
         </classes>
 

@@ -2,44 +2,45 @@ package Tests.ProductsTests;
 
 import Pages.*;
 import Tests.TestBase.TestBase;
+import com.github.javafaker.Faker;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import utilties.JsonDataReader;
-import com.github.javafaker.Faker;
 
-
-public class AddReviewTest extends TestBase {
-
-    SearchResultsPage searchPage;
-    ProductPage productPage;
+public class RegisteredUserCheckoutTest extends TestBase {
     HomePage homePage;
     UserRegistrationPage registerPage;
     LoginPage loginPage;
-    AddReviewPage reviewPage;
-    JsonDataReader jsonReader;
-    String email;
+    ProductPage productPage;
+    ShoppingCartPage cartPage;
+    CheckoutPage checkoutPage;
 
+    String email;
+    JsonDataReader jsonReader;
 
     @BeforeClass
-    public void getReady (){
+    public void getReady() {
         //generate an email for register.
         Faker fakeData = new Faker();
         email = fakeData.internet().emailAddress();
+
         jsonReader = new JsonDataReader();
         jsonReader.readJsonFile();
 
         homePage = new HomePage(driver);
-        productPage = new ProductPage(driver);
         registerPage = new UserRegistrationPage(driver);
         loginPage = new LoginPage(driver);
-        searchPage = new SearchResultsPage(driver);
-        reviewPage = new AddReviewPage(driver);
+        cartPage = new ShoppingCartPage(driver);
+        checkoutPage = new CheckoutPage(driver);
+        productPage = new ProductPage(driver);
+
+
     }
 
     @Test(priority = 1)
     public void UserRegisterSuccessfully() {
-
         homePage.openRegisterPage();
         registerPage.userRegistration(jsonReader.firstName, jsonReader.lastName, email, jsonReader.password);
         Assert.assertTrue(registerPage.getSuccessMessage().contains(jsonReader.successRegisterMessage));
@@ -58,15 +59,30 @@ public class AddReviewTest extends TestBase {
         Assert.assertTrue(productPage.getProductName().contains(jsonReader.searchText));
     }
 
+    @Test(priority = 4)
+    public void AddProductToCart(){
 
-    @Test(priority=4)
-    public void AddReviewToProduct(){
+        SoftAssert softAssert = new SoftAssert();
 
-        productPage.openAddReviewPage();
-        reviewPage.addReview(jsonReader.reviewTitle, jsonReader.reviewText);
-        Assert.assertTrue(reviewPage.getReviewResultMessage().contains(jsonReader.reviewSuccessMessage));
+        productPage.addProductToCart();
+        softAssert.assertTrue(productPage.getSuccessMessage().contains(jsonReader.cartSuccessMessage));
+        productPage.goToShoppingCart();
+        softAssert.assertTrue(cartPage.getProductName().contains(jsonReader.productName));
+
+        softAssert.assertAll();
 
     }
+
+    @Test(priority = 5)
+    public void confirmOrder (){
+        cartPage.proceedToCheckout();
+        checkoutPage.finishOrder("Egypt","Cairo","33 ramses st","11672","01023231325");
+        Assert.assertTrue(checkoutPage.getOrderSuccessMessage().contains(jsonReader.orderSuccessMessage));
+
+    }
+
+
+
 
 }
 
