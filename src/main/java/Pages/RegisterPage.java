@@ -4,9 +4,9 @@ import Base.PageBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class UserRegistrationPage extends PageBase {
+public class RegisterPage extends PageBase {
 
-    public UserRegistrationPage(WebDriver driver){
+    public RegisterPage(WebDriver driver){
         super(driver);
     }
 
@@ -20,8 +20,6 @@ public class UserRegistrationPage extends PageBase {
     private final By confirmPasswordTxtBox = By.id("ConfirmPassword");
     private final By registerBtn = By.id("register-button");
     private final By  successMessage = By.cssSelector("div.result");
-    private final By logoutLink = By.linkText("Log out");
-    private final By myAccountLink = By.linkText("My account");
 
 
     public void userRegistration(String firstName, String lastName ,String email, String password){
@@ -38,21 +36,7 @@ public class UserRegistrationPage extends PageBase {
     }
 
     public String getSuccessMessage(){
-       return driver.findElement(successMessage).getText();
-    }
-
-    public String getLogoutLink(){
-        return  getElementText(logoutLink);
-    }
-
-    public void logout()
-    {
-        clickButton(logoutLink);
-    }
-
-    public void openMyAccountPage()
-    {
-        clickButton(myAccountLink);
+       return getElementText(successMessage);
     }
 
 

@@ -1,15 +1,11 @@
 package Tests.RegisterTests;
 
-import Pages.HomePage;
-import Pages.LoginPage;
-import Pages.MyAccountPage;
-import Pages.UserRegistrationPage;
+
 import Tests.TestBase.TestBase;
 import com.github.javafaker.Faker;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import utilties.JsonDataReader;
 
 public class ChangePasswordTest extends TestBase {
     /*
@@ -23,12 +19,10 @@ public class ChangePasswordTest extends TestBase {
     8- Log in using the new password.
      */
 
-    HomePage homePage;
-    UserRegistrationPage registerPage;
-    LoginPage loginPage;
-    MyAccountPage myAccountPage;
+
+
     String email ;
-    JsonDataReader jsonReader;
+
 
     @BeforeClass
     public void getReady() {
@@ -36,35 +30,26 @@ public class ChangePasswordTest extends TestBase {
         Faker fakeData = new Faker();
         email = fakeData.internet().emailAddress();
 
-        jsonReader = new JsonDataReader();
-        jsonReader.readJsonFile();
-
-        homePage = new HomePage(driver);
-        registerPage = new UserRegistrationPage(driver);
-        loginPage = new LoginPage(driver);
-        myAccountPage = new MyAccountPage(driver) ;
     }
-    @Test(priority=1)
-    public void UserRegisterSuccessfully()
-    {
-        homePage.openRegisterPage();
+
+    @Test(priority = 1)
+    public void UserRegisterSuccessfully() {
+        var registerPage = homePage.openRegisterPage();
         registerPage.userRegistration(jsonReader.firstName, jsonReader.lastName, email, jsonReader.password);
         Assert.assertTrue(registerPage.getSuccessMessage().contains(jsonReader.successRegisterMessage));
     }
 
-
-    @Test(priority=2)
-    public void RegisteredUserLogin()
-    {
-        homePage.openLoginPage();
+    @Test(priority = 2)
+    public void userLogin() {
+        var loginPage =homePage.openLoginPage();
         loginPage.userLogin(email, jsonReader.password);
-        Assert.assertTrue(registerPage.getLogoutLink().contains(jsonReader.logoutLinkText));
+        Assert.assertTrue(homePage.getLogoutLink().contains(jsonReader.logoutLinkText));
     }
 
     @Test(priority=3)
     public void RegisteredUserChangePassword()
     {
-        registerPage.openMyAccountPage();
+        var myAccountPage = homePage.openMyAccountPage();
         myAccountPage.openChangePasswordPage();
         myAccountPage.changePassword(jsonReader.password, jsonReader.newPassword);
         Assert.assertTrue(myAccountPage.getChangePasswordResult().contains(jsonReader.passwordChangedMessage));
@@ -73,7 +58,7 @@ public class ChangePasswordTest extends TestBase {
     @Test(priority=4)
     public void SignOutFromAccount()
     {
-        registerPage.logout();
+        homePage.logout();
     }
 
 
@@ -81,9 +66,9 @@ public class ChangePasswordTest extends TestBase {
     @Test(priority=5)
     public void loginWithNewPassword()
     {
-        homePage.openLoginPage();
+        var loginPage =homePage.openLoginPage();
         loginPage.userLogin(email, jsonReader.newPassword);
-        Assert.assertTrue(registerPage.getLogoutLink().contains(jsonReader.logoutLinkText));
+        Assert.assertTrue(homePage.getLogoutLink().contains(jsonReader.logoutLinkText));
     }
 
 

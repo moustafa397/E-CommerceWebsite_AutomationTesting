@@ -19,19 +19,24 @@ public class HomePage extends PageBase {
     private final By searchAutoSuggestions = By.cssSelector(".ui-menu-item > a");
     private final By searchTxtBox = By.id("small-searchterms");
     private final By searchBtn = By.cssSelector("button[type='submit']");
+    private final By logoutLink = By.linkText("Log out");
+    private final By myAccountLink = By.linkText("My account");
 
 
 
 
 
-    public void openRegisterPage(){
+
+
+    public RegisterPage openRegisterPage(){
 
          clickButton(RegisterLink);
-
+        return new RegisterPage(driver);
     }
 
-    public void openLoginPage(){
+    public LoginPage openLoginPage(){
         clickButton(loginLink);
+        return new LoginPage(driver);
     }
 
     public void scrollToBottom (){
@@ -41,12 +46,13 @@ public class HomePage extends PageBase {
 
     }
 
-    public void openContactUsPage(){
+    public ContactUsPage openContactUsPage(){
 
         clickButton(contactUsLink);
+        return new ContactUsPage(driver);
     }
 
-    public void searchSuggestedProduct (String searchText){
+    public ProductPage searchSuggestedProduct (String searchText){
 
         setTxtBoxText(searchTxtBox,searchText);
 
@@ -56,15 +62,30 @@ public class HomePage extends PageBase {
 
         products.get(0).click();
 
+        return new ProductPage(driver);
     }
 
-    public void enterSearchText (String product){
+    public SearchResultsPage enterSearchText (String product){
 
         setTxtBoxText(searchTxtBox,product);
         clickButton(searchBtn);
+        return new SearchResultsPage(driver);
     }
 
+    public void logout()
+    {
+        clickButton(logoutLink);
+    }
 
+    public String getLogoutLink(){
+        return  getElementText(logoutLink);
+    }
+
+    public MyAccountPage openMyAccountPage()
+    {
+        clickButton(myAccountLink);
+        return new MyAccountPage(driver);
+    }
 
 
 }

@@ -39,8 +39,9 @@ public class ProductPage extends PageBase {
         selectFromDropDown(currencyDropdown,option);
     }
 
-    public void openAddReviewPage () {
+    public AddReviewPage openAddReviewPage () {
         clickButton(addReviewBtn);
+        return new AddReviewPage(driver);
     }
 
     public void addToWishlist (){
@@ -52,16 +53,18 @@ public class ProductPage extends PageBase {
         return getElementText(successMessage);
     }
 
-    public void goToWishlist (){
+    public WishlistPage goToWishlist (){
         clickButton(wishlistBtn);
+        return new WishlistPage(driver);
     }
 
     public void addProductToCart (){
         clickButton(addToCartBtn);
     }
 
-    public void goToShoppingCart (){
+    public ShoppingCartPage goToShoppingCart (){
         clickButton(shoppingCartBtn);
+        return new ShoppingCartPage(driver);
     }
 
 

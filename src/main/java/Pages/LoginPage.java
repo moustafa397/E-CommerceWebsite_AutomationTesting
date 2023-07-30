@@ -18,6 +18,7 @@ public class LoginPage extends PageBase {
     private final By passwordTxtBox = By.id("Password");
     private final By loginBtn = By.cssSelector("button.button-1.login-button") ;
 
+
     public void userLogin(String email, String password){
 
         setTxtBoxText(emailTxtBox,email);

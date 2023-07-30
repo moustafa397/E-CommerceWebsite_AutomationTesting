@@ -1,5 +1,6 @@
 package Tests.TestBase;
 
+import Pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -7,10 +8,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 import org.testng.ITestResult;
 import Utilities.Helper;
+import utilties.JsonDataReader;
 
 public class TestBase {
 
     public static WebDriver driver;
+
+    protected HomePage homePage;
+    protected JsonDataReader jsonReader;
 
 
     @BeforeClass
@@ -20,7 +25,6 @@ public class TestBase {
         if (browserName.equalsIgnoreCase("chrome") ) {
 
              driver = new ChromeDriver();
-
 
         } else if (browserName.equalsIgnoreCase("firefox")) {
 
@@ -32,14 +36,15 @@ public class TestBase {
 
         }
 
+        homePage = new HomePage(driver);
+        jsonReader = new JsonDataReader();
+        jsonReader.readJsonFile();
         driver.manage().window().maximize();
         goHome();
+
     }
 
 
-    public void goHome(){
-        driver.get("https://demo.nopcommerce.com/");
-    }
 
 
     @AfterMethod
@@ -58,5 +63,11 @@ public class TestBase {
         driver.quit();
 
     }
+
+    public void goHome(){
+        driver.get("https://demo.nopcommerce.com/");
+    }
+
+
 
 }

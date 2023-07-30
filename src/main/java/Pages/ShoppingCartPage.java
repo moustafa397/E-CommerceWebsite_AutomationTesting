@@ -18,9 +18,10 @@ public class ShoppingCartPage extends PageBase {
     public String getProductName (){
         return getElementText(productName);
     }
-    public void proceedToCheckout () {
+    public CheckoutPage proceedToCheckout () {
         clickButton(termsCheckBox);
         clickButton(checkoutBtn);
+        return new CheckoutPage(driver);
     }
 
 }

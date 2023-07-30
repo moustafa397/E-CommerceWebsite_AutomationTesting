@@ -1,15 +1,12 @@
 package Tests.RegisterTests;
 
 
-import Pages.HomePage;
-import Pages.LoginPage;
-import Pages.UserRegistrationPage;
+
 import Tests.TestBase.TestBase;
 import com.github.javafaker.Faker;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import utilties.JsonDataReader;
 
 
 public class RegisterTest extends TestBase {
@@ -23,11 +20,8 @@ public class RegisterTest extends TestBase {
     6-login with the registered user.
     */
 
-    HomePage homePage;
-    UserRegistrationPage registerPage;
-    LoginPage loginPage;
-    String email;
-    JsonDataReader jsonReader;
+     String email;
+
 
     @BeforeClass
     public void getReady() {
@@ -35,27 +29,20 @@ public class RegisterTest extends TestBase {
         Faker fakeData = new Faker();
         email = fakeData.internet().emailAddress();
 
-        jsonReader = new JsonDataReader();
-        jsonReader.readJsonFile();
-
-        homePage = new HomePage(driver);
-        registerPage = new UserRegistrationPage(driver);
-        loginPage = new LoginPage(driver);
     }
 
     @Test(priority = 1)
     public void UserRegisterSuccessfully() {
-
-        homePage.openRegisterPage();
+        var registerPage = homePage.openRegisterPage();
         registerPage.userRegistration(jsonReader.firstName, jsonReader.lastName, email, jsonReader.password);
         Assert.assertTrue(registerPage.getSuccessMessage().contains(jsonReader.successRegisterMessage));
     }
 
     @Test(priority = 2)
     public void userLogin() {
-        homePage.openLoginPage();
+        var loginPage =homePage.openLoginPage();
         loginPage.userLogin(email, jsonReader.password);
-        Assert.assertTrue(registerPage.getLogoutLink().contains(jsonReader.logoutLinkText));
+        Assert.assertTrue(homePage.getLogoutLink().contains(jsonReader.logoutLinkText));
     }
 
 }
