@@ -10,6 +10,13 @@ import com.github.javafaker.Faker;
 
 public class AddReviewTest extends TestBase {
 
+     /*
+    1- User register.
+    2- User log in.
+    3- User go to a product by auto-suggestion search.
+    4- User add a review for the product.
+     */
+
     ProductPage productPage;
     String email;
 

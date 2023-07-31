@@ -7,6 +7,12 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class AddToWishlistTest extends TestBase {
+    /*
+    1- Get to a product by auto-suggestion search.
+    2- Add the product to the wishlist.
+    3- navigate to the wishlist.
+    4- verify that the product has been added.
+     */
 
     ProductPage productPage;
 

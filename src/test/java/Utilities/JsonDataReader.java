@@ -1,4 +1,4 @@
-package utilties;
+package Utilities;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -8,12 +8,13 @@ public class JsonDataReader {
 
     public String firstName,lastName,password,newPassword, successRegisterMessage,enquiryText,enquirySuccessMessage,
             searchText,logoutLinkText,passwordChangedMessage,orderSuccessMessage,currencyValue,currencySymbol,
-            wishlistSuccessMessage,productName,reviewSuccessMessage,reviewText,reviewTitle,cartSuccessMessage;
+            wishlistSuccessMessage,productName,reviewSuccessMessage,reviewText,reviewTitle,cartSuccessMessage,
+            country,city,address,zipCode,phone;
 
     public void readJsonFile() {
         JsonParser parser = new JsonParser();
         try {
-            Object obj = parser.parse(new FileReader("src/main/java/utilties/Data.json"));
+            Object obj = parser.parse(new FileReader("src/test/java/Utilities/Data.json"));
             JsonObject jsonObject = (JsonObject) obj;
             firstName = jsonObject.get("first name").getAsString();
             lastName = jsonObject.get("last name").getAsString();
@@ -34,6 +35,11 @@ public class JsonDataReader {
             cartSuccessMessage = jsonObject.get("shopping cart success Message").getAsString();
             enquiryText = jsonObject.get("enquiry text").getAsString();
             enquirySuccessMessage = jsonObject.get("enquiry success message").getAsString();
+            country = jsonObject.get("country").getAsString();
+            city = jsonObject.get("city").getAsString();
+            address = jsonObject.get("address").getAsString();
+            zipCode = jsonObject.get("zip code").getAsString();
+            phone = jsonObject.get("phone").getAsString();
 
 
         } catch (Exception e) {

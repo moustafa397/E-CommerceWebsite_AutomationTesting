@@ -8,7 +8,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class ContactUsTest extends TestBase {
-
+    /*
+    1- Navigate to home page.
+    2- Scroll down.
+    1- click on contact us .
+    2- Send an enquiry.
+    3- Verify that your enquiry has been sent successfully.
+     */
 
     String email;
 

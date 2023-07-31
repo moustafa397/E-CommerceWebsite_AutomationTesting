@@ -8,7 +8,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.*;
 import org.testng.ITestResult;
 import Utilities.Helper;
-import utilties.JsonDataReader;
+import Utilities.JsonDataReader;
 
 public class TestBase {
 

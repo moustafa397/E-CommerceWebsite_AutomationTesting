@@ -20,7 +20,7 @@ public class PageBase {
     }
     protected void clickButton (By button){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(button));
+        wait.until(ExpectedConditions.elementToBeClickable(button));
         driver.findElement(button).click();
     }
 

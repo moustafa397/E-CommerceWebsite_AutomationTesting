@@ -9,6 +9,15 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class RegisteredUserCheckoutTest extends TestBase {
+
+    /*
+    1- User register.
+    2- User log in.
+    3- Get to a product by auto-suggestion search.
+    4- Add a product to cart.
+    5- Make checkout and confirm the order.
+     */
+
     ProductPage productPage;
     ShoppingCartPage cartPage;
     String email;
@@ -58,7 +67,7 @@ public class RegisteredUserCheckoutTest extends TestBase {
     public void confirmOrder (){
 
         var checkoutPage = cartPage.proceedToCheckout();
-        checkoutPage.finishOrder("Egypt","Cairo","33 ramses st","11672","01023231325");
+        checkoutPage.finishOrder(jsonReader.country, jsonReader.city, jsonReader.address, jsonReader.zipCode, jsonReader.phone);
         Assert.assertTrue(checkoutPage.getOrderSuccessMessage().contains(jsonReader.orderSuccessMessage));
 
     }

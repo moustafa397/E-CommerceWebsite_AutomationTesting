@@ -3,6 +3,13 @@
   "last name" :  "Ibrahem",
   "password" : "12345678" ,
   "new password" : "12345678mo",
+  "country" : "Egypt",
+  "city" : "Aswan",
+  "address" : "33 ITI Aswan",
+  "zip code" : "11672",
+  "phone": "0972323135",
+
+
 
   "success register message" : "Your registration completed",
   "password changed message" : "Password was changed",

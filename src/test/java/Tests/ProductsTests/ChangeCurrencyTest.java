@@ -6,6 +6,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ChangeCurrencyTest extends TestBase {
+    /*
+    1- get to a product by auto-suggestion search.
+    2- change the currency to euro.
+    4- verify that the product price displayed in Euro.
+
+     */
     ProductPage productPage;
 
     @Test(priority = 1)

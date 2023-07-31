@@ -8,6 +8,11 @@ import org.testng.asserts.SoftAssert;
 
 public class AddProductToCartTest extends TestBase {
 
+    /*
+    1- Get to a product by auto-suggestion search.
+    2- Add a product to cart.
+     */
+
     ProductPage productPage;
 
 
