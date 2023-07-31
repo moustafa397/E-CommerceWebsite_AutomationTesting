@@ -1,0 +1,29 @@
+{
+  "first name" :  "Mostafa",
+  "last name" :  "Ibrahem",
+  "password" : "12345678" ,
+  "new password" : "12345678mo",
+  "country" : "Egypt",
+  "city" : "Aswan",
+  "address" : "33 ITI Aswan",
+  "zip code" : "11672",
+  "phone": "0972323135",
+
+
+
+  "success register message" : "Your registration completed",
+  "password changed message" : "Password was changed",
+  "order success message" : "Your order has been successfully processed!",
+  "wishlist success message" : "The product has been added to your wishlist",
+  "shopping cart success Message" : "The product has been added to your shopping cart",
+  "review title" : "nice product",
+  "review text" : "very nice product",
+  "review success message" : "Product review is successfully added.",
+  "enquiry text" : "i need help",
+  "enquiry success message": "Your enquiry has been successfully sent to the store owner.",
+  "Log out link text" : "Log out",
+  "Search text" : "HTC",
+  "product name" : "HTC One M8 Android L 5.0 Lollipop",
+  "currency value" : "Euro",
+  "currency symbol" : "€"
+}
